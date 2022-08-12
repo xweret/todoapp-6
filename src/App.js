@@ -33,7 +33,11 @@ addItem(){
 
   }
 
-
+deleteitem(id){
+  const list = [...this.state.list]
+  const updatedList = list.filter (item => item.id !==id)
+  this.setState({list: updatedList})
+}
 
   render() {
     return (
@@ -51,6 +55,19 @@ addItem(){
       <button
       onClick={()=> this.addItem()}
       > Agregar </button>
+      <br/>
+      <ul>
+        {this.state.list.map(item=> {
+          return (
+          <li key= {item.id}>
+            {item.value}
+            <button onClick={() => this.deleteitem(item.id)}>
+              x
+            </button>
+          </li>
+            )
+        })}
+      </ul>
       
       </div>
     )
